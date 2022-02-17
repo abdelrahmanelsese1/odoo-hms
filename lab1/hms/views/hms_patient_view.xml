@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="Patient_action" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">hms.patient</field>
+        </record>
+        <menuitem id="hms_root_menu" name="hms"/>
+        <menuitem id="patient_menu" name="patients" parent="hms_root_menu" action="Patient_action"/>
+
+        <record id="patient_form" model="ir.ui.view">
+            <field name="name">Patient form</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="state_undetermined" type="object" string="Undetermined State"/>
+                        <button name="state_good" type="object" string="Good State"/>
+                        <button name="state_fair" type="object" string="Fair State"/>
+                        <button name="state_serious" type="object" string="Serious State"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="first_name" required="True"/>
+                            <field name="last_name" required="True"/>
+                            <field name="email"/>
+                            <field name="birth_date" />
+                            <field name="CR_ratio" attrs="{'required':[('PCR','=',True)]}"/>
+                            <field name="history" attrs="{'invisible':[('age','&lt;',50)]}"/>
+                            <field name="blood_type"/>
+                            <field name="PCR"/>
+                            <field name="Patient_image"/>
+                            <field name="address"/>
+                            <field name="age"/>
+                            <field name="department_id" domain="[('is_opened','=','True')]"/>
+                            <field name="doctor_id" widget="many2many_tags" attrs="{'readonly':[('department_id','=',False)]}"/>
+                            <field name="log_history_ids" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
