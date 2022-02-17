@@ -6,8 +6,8 @@
     """,
 
     'data': [
-        'security /res_groups.xml',
-        'security /ir.model.access.csv',
+        'security/res_groups.xml',
+        'security/ir.model.access.csv',
         'views/hms_patient_view.xml',
         'views/hms_department_view.xml',
         'views/hms_doctor_view.xml',
